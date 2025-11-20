@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect - Profile</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: #f0f8ff;
+            color: #1a1a1a;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #5b9fd8, #4a90e2);
+            color: #ffffff;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-family: 'Segoe Script', cursive;
+            letter-spacing: 1px;
+        }
+
+        .nav a {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 10px;
+            transition: background 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        /* Profile Container */
+        .profile-container {
+            max-width: 935px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.15);
+        }
+
+        /* Profile Header Section */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #d4e9f7;
+            margin-bottom: 30px;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7db9e8, #4a90e2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            flex-shrink: 0;
+            border: 3px solid #d4e9f7;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .profile-username {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            font-size: 16px;
+        }
+
+        .stat-item strong {
+            font-weight: 600;
+            color: #4a90e2;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #5b9fd8, #4a90e2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #4a90e2, #3a7bc8);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+        }
+
+        .btn-secondary {
+            background: #e3f2fd;
+            color: #4a90e2;
+            border: 1px solid #b3d9f2;
+        }
+
+        .btn-secondary:hover {
+            background: #d0e8f7;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            border-top: 1px solid #d4e9f7;
+            padding-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 0;
+            color: #6d7aa4;
+            font-weight: 600;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-top: 1px solid transparent;
+            margin-top: -21px;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: #4a90e2;
+            border-top-color: #4a90e2;
+        }
+
+        .tab:hover {
+            color: #4a90e2;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border: 3px solid #2c3e50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .empty-state h2 {
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .empty-state p {
+            color: #6d7aa4;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .empty-state a {
+            color: #4a90e2;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .empty-state a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #5b9fd8, #4a90e2);
+            color: #ffffff;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .profile-stats {
+                justify-content: center;
+            }
+
+            .tabs {
+                gap: 30px;
+            }
+
+            .profile-container {
+                padding: 20px;
+            }
+        }
+        .pic{
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Connect</h1>
+        <div class="nav">
+            <a href="home.html">Home</a>
+            <a href="setting.html">Settings</a>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+              <div class="profile-pic">😎</div>
+                <!-- <img class ="pic"  href="https://i.pinimg.com/564x/02/78/84/027884908c2996f94f2dbcb90a1c735f.jpg" > -->
+                
+            
+            <div class="profile-info">
+                <div class="profile-username">clumsy_varshu</div>
+                
+                <div class="profile-stats">
+                    <div class="stat-item"><strong>0</strong> posts</div>
+                    <div class="stat-item"><strong>4</strong> followers</div>
+                    <div class="stat-item"><strong>4</strong> following</div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="btn btn-primary">Edit profile</button>
+                    <button class="btn btn-secondary">View archive</button>
+                    <button class="btn btn-secondary">⚙️</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab active">
+                <span>⊞</span> POSTS
+            </div>
+            <div class="tab">
+                <span>🔖</span> SAVED
+            </div>
+            <div class="tab">
+                <span>👤</span> TAGGED
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state">
+            <div class="empty-state-icon">📷</div>
+            <h2>Share Photos</h2>
+            <p>When you share photos, they will appear on your profile.</p>
+            <a href="#create">Share your first photo</a>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Connect. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

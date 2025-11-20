@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Login</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* 🌈 Soft Pastel Gradient Background */
+            background: linear-gradient(135deg, #dce9ff, #e8dfff, #f2e6ff);
+        }
+
+        /* MAIN WHITE CARD (Glass effect) */
+        .main-card {
+            width: 900px;
+            height: 520px;
+
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 25px;
+            padding: 40px;
+            display: flex;
+            gap: 40px;
+
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 35px rgba(180, 200, 255, 0.45);
+        }
+
+        /* LEFT INFO SECTION */
+        .left-info {
+            width: 45%;
+            color: #2a3d5f;
+            position: relative;
+        }
+
+        /* Logo Background Image */
+        .logo-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            background-image: url('connect_logo.png'); /* Replace with your logo image path */
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .left-info h1 {
+            font-size: 55px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            color: #6b8cff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .left-info h3 {
+            margin-top: 5px;
+            font-size: 20px;
+            font-weight: 300;
+            color: #8ba0d9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .left-info p {
+            margin-top: 20px;
+            font-size: 15.5px;
+            line-height: 1.6;
+            width: 90%;
+            color: #7387b8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Pastel Shapes */
+        .shapes {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .shape {
+            width: 90px;
+            height: 130px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, #b8d4ff, #cfe2ff);
+            opacity: 0.9;
+            box-shadow: 0px 0px 12px rgba(180, 200, 255, 0.4);
+        }
+
+        .shape:nth-child(2) {
+            background: linear-gradient(145deg, #c7d9ff, #dae7ff);
+        }
+
+        .shape:nth-child(3) {
+            background: linear-gradient(145deg, #d6e4ff, #e6efff);
+        }
+
+        /* RIGHT LOGIN PANEL */
+        .login-box {
+            width: 45%;
+            padding: 35px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(150, 170, 220, 0.35);
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px 0;
+            border: 1px solid #9bbdff;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 6px;
+            color: #2a3d5f;
+            font-size: 15px;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: #7aa4ff;
+            box-shadow: 0 0 10px rgba(150, 180, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Pastel Login Button */
+        .login-btn {
+            width: 100%;
+            display: block;
+            padding: 12px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #9ec3ff, #bcd6ff);
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 5px;
+            box-shadow: 0 0 15px rgba(150, 180, 255, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #8ab5ff, #aacaff);
+        }
+
+        .login-btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .or-line {
+            text-align: center;
+            margin: 10px 0;
+            opacity: 0.8;
+            font-size: 14px;
+            color: #5d6f9b;
+        }
+
+        .link {
+            color: #6b8cff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .signup-box {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 15px;
+            color: #4d5f8c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-card">
+
+        <!-- LEFT SECTION -->
+        <div class="left-info">
+            <!-- Background Logo Image -->
+            <div class="logo-bg"></div>
+
+            <h1>Connect</h1>
+            <h3>The Elegant Campus Network</h3>
+
+            <p>
+                Share moments, connect with friends, explore campus updates — 
+                everything in one simple and stylish platform designed for your campus life.
+            </p>
+
+            <div class="shapes">
+                <div class="shape"></div>
+                <div class="shape"></div>
+                <div class="shape"></div>
+            </div>
+        </div>
+
+        <!-- RIGHT LOGIN SECTION -->
+        <div class="login-box">
+
+            <form action="home.html">
+                <input type="text" placeholder="Phone number, username, or email" required>
+                <input type="password" placeholder="Password" required>
+
+                <button type="submit" class="login-btn"><a href="home.html" >LogIn</a></button>
+            </form>
+
+            <div class="or-line">OR</div>
+
+            <div style="text-align:center;">
+                <a href="https://www.facebook.com" target="_blank" class="link">Login with Facebook</a>
+            </div>
+
+            <div style="text-align:center; margin-top:10px;">
+                <a href="#" class="link">Forgot password?</a>
+            </div>
+
+            <div class="signup-box">
+                Don't have an account? 
+                <a href="signup.html" class="link">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

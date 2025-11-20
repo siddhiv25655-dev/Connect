@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connectify - Account Settings</title>
+
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #dce9ff, #b7d3ff);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #0056b3;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #003d80;
+            border-left: 5px solid #0056b3;
+            padding-left: 10px;
+        }
+
+        .setting-box {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #bcd0ff;
+            border-radius: 10px;
+            background: #f3f7ff;
+        }
+
+        label {
+            font-weight: bold;
+            color: #003d80;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #87aafc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            margin-top: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #003d80;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            background: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>Connectify - Account Settings</header>
+
+<div class="container">
+
+    <!-- Update Profile Info -->
+    <div class="setting-box">
+        <h2>Update Profile Info</h2>
+        <form>
+            <label>Name:</label>
+            <input type="text" placeholder="Enter your name">
+
+            <label>Bio:</label>
+            <textarea placeholder="Write something about yourself..."></textarea>
+
+            <label>Profile Photo URL:</label>
+            <input type="text" placeholder="Enter image link">
+
+            <button type="submit">Save Profile</button>
+        </form>
+    </div>
+
+    <!-- Change Password -->
+    <div class="setting-box">
+        <h2>Change Password</h2>
+        <form>
+            <label>Current Password:</label>
+            <input type="password">
+
+            <label>New Password:</label>
+            <input type="password">
+
+            <label>Confirm New Password:</label>
+            <input type="password">
+
+            <button type="submit">Update Password</button>
+        </form>
+    </div>
+
+    <!-- Privacy Settings -->
+    <div class="setting-box">
+        <h2>Privacy Settings</h2>
+        <form>
+            <label>Profile Visibility:</label>
+            <select>
+                <option>Public</option>
+                <option>Friends Only</option>
+                <option>Private</option>
+            </select>
+
+            <label>Who can message you?</label>
+            <select>
+                <option>Everyone</option>
+                <option>Friends Only</option>
+            </select>
+
+            <button type="submit">Save Privacy Settings</button>
+        </form>
+    </div>
+
+</div>
+
+<footer>© 2025 Connectify | All Rights Reserved</footer>
+
+</body>
+</html>
