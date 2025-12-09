@@ -1,252 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect Login</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connect Login</title>
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+  <style>
+    html,body{
+      height:100%;
+    }
 
-            /* 🌈 Soft Pastel Gradient Background */
-            background: linear-gradient(135deg, #dce9ff, #e8dfff, #f2e6ff);
-        }
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: "Inter", Arial, Helvetica, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #dce9ff, #e8dfff, #f2e6ff);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-        /* MAIN WHITE CARD (Glass effect) */
-        .main-card {
-            width: 900px;
-            height: 520px;
+    /* WRAPPER / CARD */
+    .main-card {
+      width: min(920px, 96%);
+      max-width: 1100px;
+      height: auto; /* allow growth for small screens */
+      min-height: 440px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 25px;
+      padding: 36px;
+      display: flex;
+      gap: 36px;
+      align-items: stretch;
+      backdrop-filter: blur(25px);
+      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 0 35px rgba(180,200,255,0.45);
+      box-sizing: border-box;
+    }
 
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 25px;
-            padding: 40px;
-            display: flex;
-            gap: 40px;
+    /* LEFT INFO */
+    .left-info {
+      width: 48%;
+      color: #2a3d5f;
+      position: relative;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      padding-right:8px;
+      box-sizing:border-box;
+      min-width:220px;
+    }
 
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 0 35px rgba(180, 200, 255, 0.45);
-        }
+    .logo-bg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      height: 280px;
+      background-image: url('connect_logo.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.12;
+      z-index: 0;
+      pointer-events:none;
+    }
 
-        /* LEFT INFO SECTION */
-        .left-info {
-            width: 45%;
-            color: #2a3d5f;
-            position: relative;
-        }
+    .left-info h1 {
+      font-size: clamp(32px, 4.2vw, 55px);
+      font-weight: 800;
+      margin: 0 0 6px 0;
+      letter-spacing: 1px;
+      color: #6b8cff;
+      position: relative;
+      z-index: 1;
+    }
 
-        /* Logo Background Image */
-        .logo-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 280px;
-            height: 280px;
-            background-image: url('connect_logo.png'); /* Replace with your logo image path */
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            opacity: 0.15;
-            z-index: 0;
-        }
+    .left-info h3 {
+      margin: 0;
+      font-size: clamp(14px, 1.6vw, 20px);
+      font-weight: 300;
+      color: #8ba0d9;
+      position: relative;
+      z-index: 1;
+    }
 
-        .left-info h1 {
-            font-size: 55px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            color: #6b8cff;
-            position: relative;
-            z-index: 1;
-        }
+    .left-info p {
+      margin-top: 18px;
+      font-size: clamp(13px, 1.2vw, 15.5px);
+      line-height: 1.6;
+      width: 95%;
+      color: #7387b8;
+      position: relative;
+      z-index: 1;
+    }
 
-        .left-info h3 {
-            margin-top: 5px;
-            font-size: 20px;
-            font-weight: 300;
-            color: #8ba0d9;
-            position: relative;
-            z-index: 1;
-        }
+    .shapes {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+      position: relative;
+      z-index: 1;
+      flex-wrap:wrap;
+    }
 
-        .left-info p {
-            margin-top: 20px;
-            font-size: 15.5px;
-            line-height: 1.6;
-            width: 90%;
-            color: #7387b8;
-            position: relative;
-            z-index: 1;
-        }
+    .shape {
+      width: 84px;
+      height: 120px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #b8d4ff, #cfe2ff);
+      opacity: 0.95;
+      box-shadow: 0px 0px 12px rgba(180, 200, 255, 0.35);
+    }
 
-        /* Pastel Shapes */
-        .shapes {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            position: relative;
-            z-index: 1;
-        }
+    .shape:nth-child(2) { background: linear-gradient(145deg, #c7d9ff, #dae7ff); }
+    .shape:nth-child(3) { background: linear-gradient(145deg, #d6e4ff, #e6efff); }
 
-        .shape {
-            width: 90px;
-            height: 130px;
-            border-radius: 20px;
-            background: linear-gradient(145deg, #b8d4ff, #cfe2ff);
-            opacity: 0.9;
-            box-shadow: 0px 0px 12px rgba(180, 200, 255, 0.4);
-        }
+    /* RIGHT LOGIN */
+    .login-box {
+      width: 52%;
+      padding: 30px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 0 20px rgba(150, 170, 220, 0.35);
+      box-sizing:border-box;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
 
-        .shape:nth-child(2) {
-            background: linear-gradient(145deg, #c7d9ff, #dae7ff);
-        }
+    .login-top {
+      margin-bottom: 6px;
+    }
 
-        .shape:nth-child(3) {
-            background: linear-gradient(145deg, #d6e4ff, #e6efff);
-        }
+    .login-box form {
+      width:100%;
+    }
 
-        /* RIGHT LOGIN PANEL */
-        .login-box {
-            width: 45%;
-            padding: 35px;
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 20px rgba(150, 170, 220, 0.35);
-        }
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0 14px 0;
+      border: 1px solid #9bbdff;
+      background-color: rgba(255,255,255,0.6);
+      border-radius: 8px;
+      color: #2a3d5f;
+      font-size: 15px;
+      box-sizing:border-box;
+    }
 
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0 15px 0;
-            border: 1px solid #9bbdff;
-            background-color: rgba(255, 255, 255, 0.6);
-            border-radius: 6px;
-            color: #2a3d5f;
-            font-size: 15px;
-        }
+    .login-box input::placeholder { color: #6b7aa3; opacity:0.9; }
 
-        .login-box input:focus {
-            outline: none;
-            border-color: #7aa4ff;
-            box-shadow: 0 0 10px rgba(150, 180, 255, 0.5);
-            background-color: rgba(255, 255, 255, 0.85);
-        }
+    .login-box input:focus {
+      outline: none;
+      border-color: #7aa4ff;
+      box-shadow: 0 0 10px rgba(150, 180, 255, 0.45);
+      background-color: rgba(255, 255, 255, 0.9);
+    }
 
-        /* Pastel Login Button */
-        .login-btn {
-            width: 100%;
-            display: block;
-            padding: 12px;
-            border-radius: 6px;
-            background: linear-gradient(135deg, #9ec3ff, #bcd6ff);
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 5px;
-            box-shadow: 0 0 15px rgba(150, 180, 255, 0.4);
-            border: none;
-            cursor: pointer;
-        }
+    .login-btn {
+      width: 100%;
+      display: inline-block;
+      padding: 12px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #9ec3ff, #bcd6ff);
+      color: white;
+      font-size: 17px;
+      font-weight: 700;
+      text-align: center;
+      margin-top: 4px;
+      box-shadow: 0 0 15px rgba(150, 180, 255, 0.35);
+      border: none;
+      cursor: pointer;
+    }
 
-        .login-btn:hover {
-            background: linear-gradient(135deg, #8ab5ff, #aacaff);
-        }
+    .login-btn:hover { background: linear-gradient(135deg, #8ab5ff, #aacaff); }
 
-        .login-btn a {
-            color: white;
-            text-decoration: none;
-        }
+    .or-line {
+      text-align: center;
+      margin: 12px 0;
+      opacity: 0.85;
+      font-size: 14px;
+      color: #5d6f9b;
+    }
 
-        .or-line {
-            text-align: center;
-            margin: 10px 0;
-            opacity: 0.8;
-            font-size: 14px;
-            color: #5d6f9b;
-        }
+    .link { 
+      color: #6b8cff;
+      text-decoration: none;
+      font-size: 14px; 
+      font-weight: 600;
+    }
+    .muted-link {
+      color: #4d5f8c;
+      text-decoration:none; 
+      font-weight:600; 
+      font-size:14px;
+    }
 
-        .link {
-            color: #6b8cff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-        }
+    .signup-box { 
+      text-align: center;
+      margin-top: 14px; 
+      font-size: 15px;
+      color: #4d5f8c; 
+    }
 
-        .signup-box {
-            text-align: center;
-            margin-top: 18px;
-            font-size: 15px;
-            color: #4d5f8c;
-        }
-    </style>
+    /* Small details */
+    .center { 
+      text-align:center;
+    }
+
+    /* RESPONSIVE RULES */
+    @media (max-width: 920px) {
+      .main-card {
+        gap: 22px;
+        padding: 26px;
+      }
+
+      .logo-bg {
+        width: 220px;
+        height: 220px; 
+        opacity:0.10;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .main-card {
+        flex-direction: column;
+        padding: 20px;
+        min-height: auto;
+      }
+
+      .left-info, .login-box {
+        width: 100%;
+      }
+
+      .left-info {
+        align-items: start;
+        padding-right:0;
+        padding-bottom: 8px;
+      }
+
+      .logo-bg { 
+        width: 160px; 
+        height:160px;
+        opacity:0.06;
+        left:82%; 
+        top:22%; 
+        transform: translate(-50%,-50%);
+      }
+
+      .shape { width: 70px; height: 100px; border-radius: 12px; }
+      .shapes { gap:10px; }
+      .left-info p { width:100%; }
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding: 12px;
+      }
+      .main-card { 
+        padding: 16px; 
+        border-radius: 16px;
+      }
+      .left-info h1 { 
+        font-size: 28px; 
+      }
+      .left-info h3 { 
+        font-size: 14px; 
+      }
+      .left-info p { 
+        font-size: 13px; 
+        margin-top:12px;
+      }
+      .login-box { 
+        padding: 18px; 
+      }
+      .login-box input {
+        padding: 10px;
+        font-size: 14px;
+      }
+      .login-btn {
+        padding: 11px;
+        font-size: 15px; 
+        border-radius: 6px; 
+      }
+      .logo-bg { 
+        display:none;
+      }
+      .shape { 
+        display:none;
+      }
+    }
+
+    /* Accessibility: focus-visible outlines */
+    .login-box input:focus-visible, .login-btn:focus-visible, a:focus-visible {
+      outline: 3px solid rgba(123,160,255,0.25);
+      outline-offset: 3px;
+    }
+
+    .credit {
+      text-align:center;
+      font-size:12px;
+      color:#6b7aa3;
+      margin-top:12px;
+    }
+  </style>
 </head>
-
 <body>
+  <div class="main-card">
 
-    <div class="main-card">
+    <!-- LEFT SECTION -->
+    <div class="left-info">
+      <div class="logo-bg" aria-hidden="true"></div>
 
-        <!-- LEFT SECTION -->
-        <div class="left-info">
-            <!-- Background Logo Image -->
-            <div class="logo-bg"></div>
+      <h1>Connect</h1>
+      <h3>The Elegant Campus Network</h3>
 
-            <h1>Connect</h1>
-            <h3>The Elegant Campus Network</h3>
+      <p>
+        Share moments, connect with friends, explore campus updates —
+        everything in one simple and stylish platform designed for your campus life.
+      </p>
 
-            <p>
-                Share moments, connect with friends, explore campus updates — 
-                everything in one simple and stylish platform designed for your campus life.
-            </p>
+      <div class="shapes" aria-hidden="true">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+      </div>
+    </div>
 
-            <div class="shapes">
-                <div class="shape"></div>
-                <div class="shape"></div>
-                <div class="shape"></div>
-            </div>
-        </div>
+    <!-- RIGHT: LOGIN BOX -->
+    <div class="login-box" role="region" aria-label="Login form">
+      <div class="login-top">
+        <!-- ✅ ALERT ADDED HERE -->
+        <form action="home.html" method="get" novalidate onsubmit="alert('Login successful!');">
+          <label for="user" class="sr-only" style="position:absolute;left:-9999px">Phone number, username, or email</label>
+          <input id="user" name="user" type="text" placeholder="Phone number, username, or email" required />
 
-        <!-- RIGHT LOGIN SECTION -->
-        <div class="login-box">
+          <label for="pass" class="sr-only" style="position:absolute;left:-9999px">Password</label>
+          <input id="pass" name="password" type="password" placeholder="Password" required />
 
-            <form action="home.html">
-                <input type="text" placeholder="Phone number, username, or email" required>
-                <input type="password" placeholder="Password" required>
+          <button type="submit" class="login-btn">Log In</button>
+        </form>
+      </div>
 
-                <button type="submit" class="login-btn"><a href="home.html" >LogIn</a></button>
-            </form>
+      <div class="or-line">OR</div>
 
-            <div class="or-line">OR</div>
+      <div class="center" style="margin-bottom:8px;">
+        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="link">Login with Facebook</a>
+      </div>
 
-            <div style="text-align:center;">
-                <a href="https://www.facebook.com" target="_blank" class="link">Login with Facebook</a>
-            </div>
+      <div class="center" style="margin-bottom:6px;">
+        <a href="#" class="muted-link">Forgot password?</a>
+      </div>
 
-            <div style="text-align:center; margin-top:10px;">
-                <a href="#" class="link">Forgot password?</a>
-            </div>
-
-            <div class="signup-box">
-                Don't have an account? 
-                <a href="signup.html" class="link">Sign up</a>
-            </div>
+      <div class="signup-box">
+        Don't have an account?
+        <a href="signup.html" class="link">Sign up</a>
+      </div>
+    </div>
   </div>
-    
-         </div>
-         <!-- <p class="muted" style="margin-top:20px; font-size:13px; color: #345dff;">© 2025 CONNECT SOCIAL | Made by Siddhi Varshney 👍</p>-->
-       </div>
-
 </body>
 </html>
-

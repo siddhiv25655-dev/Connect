@@ -340,12 +340,30 @@ dob-row select:focus{
     <div class="login-link">
       <a href="login.html">Already have an account?</a>
     </div>
-
+<button class="mode"  style="background-color:#7AB8D6; color: white; border: 1px solid #7AB8D6; padding: 10px; margin-top: 10px;">Change Mode </button>
   </form>
 <p class="muted" style="margin-top:20px; font-size:13px; color: #345dff;">© 2025 CONNECT SOCIAL | Made by Siddhi Varshney 👍</p>
 
 </div>
 
-
+<script>
+  let button = document.querySelector('.mode');
+  button.addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    if(document.body.classList.contains('dark-mode')){
+      let body = document.body;
+      body.style.background = 'linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%)';
+      button.style.backgroundColor = '#2C3E50';
+      button.style.color = 'white';
+      button.style.border = '1px solid #2C3E50';
+    } else {
+      let body = document.body;
+      body.style.background = 'linear-gradient(135deg, #D4E9F7 0%, #E8F4F8 100%)';
+      button.style.backgroundColor = '#7AB8D6';
+      button.style.color = 'white';
+      button.style.border = '1px solid #7AB8D6';
+    }
+  });
+</script>
 </body>
 </html>

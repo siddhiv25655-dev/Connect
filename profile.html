@@ -1,323 +1,493 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect - Profile</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Connect - Profile</title>
+  <style>
+  
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0
+    }
+    html,body{
+      height:100%;
+    }
+    body{
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+      background:#f0f8ff;
+      color:#111;
+      /* -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale; */
+      line-height:1.35;
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background: #f0f8ff;
-            color: #1a1a1a;
-            min-height: 100vh;
-        }
+    }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #5b9fd8, #4a90e2);
-            color: #ffffff;
-            padding: 18px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
+.dark-mode {
+  background: #000 !important;
+  color: #fff !important;
+}
 
-        header h1 {
-            font-size: 28px;
-            font-family: 'Segoe Script', cursive;
-            letter-spacing: 1px;
-        }
+.dark-mode .profile-container {
+  background: #111;
+  color: #fff;
+}
 
-        .nav a {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 16px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 14px;
-            margin-left: 10px;
-            transition: background 0.3s;
-            backdrop-filter: blur(10px);
-        }
+.dark-mode header {
+  background: #222;
+  color: #fff;
+}
 
-        .nav a:hover {
-            background: rgba(255, 255, 255, 0.35);
-        }
+.dark-mode .tab {
+  color: #ccc;
+}
 
-        /* Profile Container */
-        .profile-container {
-            max-width: 935px;
-            margin: 30px auto;
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.15);
-        }
+.dark-mode .tab.active {
+  color: #4a90e2;
+}
 
-        /* Profile Header Section */
-        .profile-header {
-            display: flex;
-            align-items: center;
-            gap: 80px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #d4e9f7;
-            margin-bottom: 30px;
-        }
+.dark-mode footer {
+  background: #222;
+}
 
-        .profile-pic {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #7db9e8, #4a90e2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            color: white;
-            flex-shrink: 0;
-            border: 3px solid #d4e9f7;
-        }
+.dark-mode .btn-secondary {
+  background: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
 
-        .profile-info {
-            flex: 1;
-        }
+.dark-mode .btn-primary {
+  background: #4a90e2;
+  color: #fff;
+}
 
-        .profile-username {
-            font-size: 28px;
-            font-weight: 300;
-            margin-bottom: 20px;
-            color: #2c3e50;
-        }
+.dark-mode a {
+  color: #4a90e2;
+}
 
-        .profile-stats {
-            display: flex;
-            gap: 40px;
-            margin-bottom: 20px;
-        }
 
-        .stat-item {
-            font-size: 16px;
-        }
+    header{
+      background: linear-gradient(135deg,#5b9fd8,#4a90e2);
+      color:#fff;
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.08);
+    }
 
-        .stat-item strong {
-            font-weight: 600;
-            color: #4a90e2;
-        }
+    header h1{
+      font-size:20px;
+      font-weight:700;
+      letter-spacing:0.6px;
+    }
 
-        .profile-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
+    .menu-toggle{
+      display:none;
+    }
 
-        .btn {
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s;
-        }
+    .menu-btn{
+      display:none;
+      background:rgba(255,255,255,0.12);
+      border:none;
+      color:#fff;
+      padding:8px 10px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+    }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #5b9fd8, #4a90e2);
-            color: white;
-        }
+    nav.nav{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    nav.nav a{
+      color:#fff;
+      background:rgba(255,255,255,0.12);
+      padding:8px 14px;
+      border-radius:8px;
+      text-decoration:none;
+      font-size:13px;
+      font-weight:600;
+      backdrop-filter: blur(8px);
+      /* transition:background .18s,transform .15s; */
+    }
+    nav.nav a:hover
+    { 
+      background:rgba(255,255,255,0.2); 
+      transform:translateY(-2px)
+     }
 
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #4a90e2, #3a7bc8);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
-        }
+  
+    .profile-container
+    {
+      max-width: 1000px;
+      margin:28px auto;
+      background:#fff;
+      border-radius:12px;
+      padding:32px;
+      box-shadow:0 6px 20px rgba(74,144,226,0.12);
+      overflow:hidden;
+    }
 
-        .btn-secondary {
-            background: #e3f2fd;
-            color: #4a90e2;
-            border: 1px solid #b3d9f2;
-        }
+ 
+    .profile-header{
+      display:flex;
+      gap:36px;
+      align-items:center;
+      border-bottom:1px solid #dbeefc;
+      padding-bottom:28px;
+      margin-bottom:28px;
+    }
 
-        .btn-secondary:hover {
-            background: #d0e8f7;
-        }
+    .profile-pic{
+      width:150px;
+      height:150px;
+      min-width:150px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#7db9e8,#4a90e2);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:56px;
+      color:#fff;
+      border:3px solid #d4e9f7;
+      overflow:hidden;
+      flex-shrink:0;
+    }
 
-        /* Tabs */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            border-top: 1px solid #d4e9f7;
-            padding-top: 20px;
-            margin-bottom: 20px;
-        }
+    .profile-pic img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
 
-        .tab {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 0;
-            color: #6d7aa4;
-            font-weight: 600;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border-top: 1px solid transparent;
-            margin-top: -21px;
-            transition: all 0.3s;
-        }
+    .profile-info{
+      flex:1;
+      min-width:0;
+    }
 
-        .tab.active {
-            color: #4a90e2;
-            border-top-color: #4a90e2;
-        }
+    .profile-username{
+      font-size:24px;
+      font-weight:600;
+      color:#213546;
+      margin-bottom:10px;
+    }
 
-        .tab:hover {
-            color: #4a90e2;
-        }
+    .profile-bio{
+      color:#516a87;
+      font-size:14px;
+      margin-bottom:14px;
+      display:block;
+    }
 
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-        }
+    .profile-stats{
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+      align-items:center;
+    }
+    .stat-item{
+      font-size:15px;
+      color:#5a6f93
+    }
+    .stat-item strong{
+      color:#4a90e2;
+      font-weight:700;
+      margin-right:6px
+    }
 
-        .empty-state-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 20px;
-            border: 3px solid #2c3e50;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
+    .profile-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap
+    }
+    .btn{
+      padding:9px 16px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:14px;
+      cursor:pointer;
+      border:none;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,#5b9fd8,#4a90e2);
+      color:#fff;
+      box-shadow:0 6px 14px rgba(74,144,226,0.18);
+    }
+    .btn-secondary{
+      background:#e9f6ff;
+      color:#2f6fae;
+      border:1px solid #cfe9ff;
+    }
 
-        .empty-state h2 {
-            font-size: 28px;
-            font-weight: 300;
-            margin-bottom: 10px;
-            color: #2c3e50;
-        }
+    .tabs{
+      display:flex;
+      justify-content:center;
+      gap:48px;
+      padding-top:8px;
+      border-top:1px solid #dbeefc;
+      margin-bottom:22px;
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    .tab{
+      padding:12px 6px;
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:1px;
+      color:#6d7aa4;
+      text-transform:uppercase;
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      cursor:pointer;
+      white-space:nowrap;
+      border-top:3px solid transparent;
+    }
+    .tab.active{
+       color:#2f6fae;
+       border-top-color:#4a90e2 
+      }
 
-        .empty-state p {
-            color: #6d7aa4;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
+    .empty-state{
+      text-align:center;
+      padding:48px 18px
+    }
+    .empty-state-icon{
+      width:80px;
+      height:80px;
+      border-radius:50%;
+      border:3px solid #2c3e50;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:36px;
+      margin-bottom:16px
+    }
+    .empty-state h2{
+      font-size:24px;
+      color:#213546;
+      font-weight:600;
+      margin-bottom:8px}
+    .empty-state p{
+      color:#6d7aa4;
+      margin-bottom:12px
+    }
 
-        .empty-state a {
-            color: #4a90e2;
-            font-weight: 600;
-            text-decoration: none;
-        }
+  
+    footer{
+      text-align:center;
+      padding:18px;
+      background:linear-gradient(135deg,#5b9fd8,#4a90e2);
+      color:#fff;
+      margin-top:26px;
+      font-size:13px;
+      border-radius:8px;
+      max-width:1000px;
+      margin-left:auto;
+      margin-right:auto;
+    }
 
-        .empty-state a:hover {
-            text-decoration: underline;
-        }
+    
+    @media (max-width: 920px){
+      .profile-container{
+        padding:24px
+      }
+      .profile-header{
+        gap:22px
+      }
+      .profile-pic{
+        width:128px;
+        height:128px;
+        min-width:128px;
+        font-size:48px
+      }
+      .tabs{
+        gap:32px
+      }
+    }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(135deg, #5b9fd8, #4a90e2);
-            color: #ffffff;
-            margin-top: 40px;
-            font-size: 14px;
-        }
+    @media (max-width: 720px){
+      header{
+        padding:12px 16px
+      }
+      .menu-btn{
+        display:inline-block}
+      nav.nav{
+        display:none
+      }
+      .menu-toggle:checked + .menu-btn + nav.nav{
+        display:flex;
+        flex-direction:column;
+        position:absolute;
+        left:12px;
+        right:12px;
+        top:56px;
+        background:linear-gradient(135deg,#5b9fd8,#4a90e2);
+        padding:12px;
+        border-radius:
+        10px;gap:8px;
+        z-index:40
+      }
+      nav.nav a{
+        background:rgba(255,255,255,0.12);
+        display:block;
+        padding:10px 12px
+      }
+      .profile-header{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:18px;
+        padding-bottom:20px
+      }
+      .profile-info{
+        width:100%
+      }
+      .profile-stats{
+        justify-content:center;
+        gap:18px
+      }
+      .profile-actions{
+        justify-content:center
+      }
+      .tabs{
+        justify-content:flex-start;
+        padding-left:12px;
+        gap:18px
+      }
+    }
 
-        @media (max-width: 768px) {
-            .profile-header {
-                flex-direction: column;
-                gap: 30px;
-                text-align: center;
-            }
+    @media (max-width:420px){
+      .profile-container{
+        padding:18px;
+        border-radius:10px
+      }
+      .profile-pic{
+        width:110px;
+        height:110px;
+        min-width:110px
+      }
+      .profile-username{
+        font-size:20px
+      }
+      .profile-stats{
+        gap:12px
+      }
+      .tabs{
+        gap:14px;
+        padding-left:10px
+      }
+      .btn{
+        padding:9px 12px;
+        font-size:13px;
+        border-radius:8px
+      }
+      footer{
+        padding:14px
+      }
+    }
 
-            .profile-stats {
-                justify-content: center;
-            }
-
-            .tabs {
-                gap: 30px;
-            }
-
-            .profile-container {
-                padding: 20px;
-            }
-        }
-        .pic{
-            border-radius: 100%;
-        }
-    </style>
+    /* small utility */
+    .sr-only{
+      position:absolute;
+      left:-9999px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Connect</h1>
-        <div class="nav">
-            <a href="home.html">Home</a>
-            <a href="setting.html">Settings</a>
-        </div>
-    </header>
+  <header>
 
-    <div class="profile-container">
-        <!-- Profile Header -->
-        <div class="profile-header">
-              <div class="profile-pic">😎</div>
-                <!-- <img class ="pic"  href="https://i.pinimg.com/564x/02/78/84/027884908c2996f94f2dbcb90a1c735f.jpg" > -->
-                
-            
-            <div class="profile-info">
-                <div class="profile-username">clumsy_varshu</div>
-                
-                <div class="profile-stats">
-                    <div class="stat-item"><strong>0</strong> posts</div>
-                    <div class="stat-item"><strong>4</strong> followers</div>
-                    <div class="stat-item"><strong>4</strong> following</div>
-                </div>
+    <input id="menu-toggle" class="menu-toggle" type="checkbox" aria-hidden="true">
+    <label for="menu-toggle" class="menu-btn" aria-hidden="true">Menu</label>
 
-                <div class="profile-actions">
-                    <button class="btn btn-primary">Edit profile</button>
-                    <button class="btn btn-secondary">View archive</button>
-                    <button class="btn btn-secondary">⚙️</button>
-                </div>
-            </div>
-        </div>
+    <h1>Connect</h1>
 
-        <!-- Tabs -->
-        <div class="tabs">
-            <div class="tab active">
-                <span>⊞</span> POSTS
-            </div>
-            <div class="tab">
-                <span>🔖</span> SAVED
-            </div>
-            <div class="tab">
-                <span>👤</span> TAGGED
-            </div>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="home.html">Home</a>
+      <a href="setting.html">Settings</a>
+      <button class="mode"  style="background-color:#7AB8D6; color: white; border: 1px solid #7AB8D6; padding: 10px; margin-top: 10px;">Change Mode </button>
+    </nav>
+  </header>
+
+  <main class="profile-container" role="main">
+  
+    <section class="profile-header" aria-labelledby="profile-name">
+      <div class="profile-pic" aria-hidden="true">
+       
+        <img src="🌅🌅" alt="Profile photo">
+      </div>
+
+      <div class="profile-info">
+        <div id="profile-name" class="profile-username">clumsy_varshu</div>
+        <div class="profile-bio">Loves coffee, coding, campus life, and awkward selfies.</div>
+
+        <div class="profile-stats" aria-label="Profile statistics">
+          <div class="stat-item"><strong>0</strong>posts</div>
+          <div class="stat-item"><strong>4</strong>followers</div>
+          <div class="stat-item"><strong>4</strong>following</div>
         </div>
 
-        <!-- Empty State -->
-        <div class="empty-state">
-            <div class="empty-state-icon">📷</div>
-            <h2>Share Photos</h2>
-            <p>When you share photos, they will appear on your profile.</p>
-            <a href="#create">Share your first photo</a>
+        <div class="profile-actions">
+          <button class="btn btn-primary" type="button">Edit profile</button>
+          <button class="btn btn-secondary" type="button">View archive</button>
+          <button class="btn btn-secondary" type="button" aria-label="Settings">⚙️</button>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <footer>
-        © 2025 Connect. All Rights Reserved.
-    </footer>
+  
+    <nav class="tabs" role="tablist" aria-label="Profile sections">
+      <div role="tab" class="tab active" aria-selected="true">⊞ POSTS</div>
+      <div role="tab" class="tab">🔖 SAVED</div>
+      <div role="tab" class="tab">👤 TAGGED</div>
+    </nav>
+
+   
+    <section class="empty-state" aria-live="polite">
+      <div class="empty-state-icon" aria-hidden="true">📷</div>
+      <h2>Share Photos</h2>
+      <p>When you share photos, they will appear on your profile.</p>
+      <a href="#create" style="color:#2f6fae;font-weight:700;text-decoration:none">Share your first photo</a>
+    </section>
+  </main>
+
+  <footer>© 2025 Connect. All Rights Reserved.</footer>
+
+<script>
+let button = document.querySelector('.mode');
+
+button.addEventListener('click', function () {
+  document.body.classList.toggle('dark-mode');
+
+  let profileContainer = document.querySelector(".profile-container");
+
+  if (document.body.classList.contains("dark-mode")) {
+      
+      button.style.backgroundColor = "#2C3E50";
+      button.style.color = "white";
+      button.style.border = "1px solid #2C3E50";
+  } else {
+     
+      button.style.backgroundColor = "#7AB8D6";
+      button.style.color = "white";
+      button.style.border = "1px solid #7AB8D6";
+  }
+});
+</script>
+
 
 </body>
 </html>
