@@ -23,11 +23,11 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* WRAPPER / CARD */
+
     .main-card {
       width: min(920px, 96%);
       max-width: 1100px;
-      height: auto; /* allow growth for small screens */
+      height: auto; 
       min-height: 440px;
       background: rgba(255,255,255,0.25);
       border-radius: 25px;
@@ -41,7 +41,7 @@
       box-sizing: border-box;
     }
 
-    /* LEFT INFO */
+  
     .left-info {
       width: 48%;
       color: #2a3d5f;
@@ -117,10 +117,14 @@
       box-shadow: 0px 0px 12px rgba(180, 200, 255, 0.35);
     }
 
-    .shape:nth-child(2) { background: linear-gradient(145deg, #c7d9ff, #dae7ff); }
-    .shape:nth-child(3) { background: linear-gradient(145deg, #d6e4ff, #e6efff); }
+    .shape:nth-child(2) {
+       background: linear-gradient(145deg, #c7d9ff, #dae7ff); 
+      }
+    .shape:nth-child(3) {
+       background: linear-gradient(145deg, #d6e4ff, #e6efff); 
+      }
 
-    /* RIGHT LOGIN */
+ 
     .login-box {
       width: 52%;
       padding: 30px;
@@ -155,7 +159,10 @@
       box-sizing:border-box;
     }
 
-    .login-box input::placeholder { color: #6b7aa3; opacity:0.9; }
+    .login-box input::placeholder {
+       color: #6b7aa3; 
+       opacity:0.9;
+       }
 
     .login-box input:focus {
       outline: none;
@@ -180,7 +187,9 @@
       cursor: pointer;
     }
 
-    .login-btn:hover { background: linear-gradient(135deg, #8ab5ff, #aacaff); }
+    .login-btn:hover { 
+      background: linear-gradient(135deg, #8ab5ff, #aacaff); 
+    }
 
     .or-line {
       text-align: center;
@@ -210,13 +219,13 @@
       color: #4d5f8c; 
     }
 
-    /* Small details */
+
     .center { 
       text-align:center;
     }
 
-    /* RESPONSIVE RULES */
-    @media (max-width: 920px) {
+ 
+    @media  screen and (max-width: 920px) {
       .main-card {
         gap: 22px;
         padding: 26px;
@@ -298,7 +307,7 @@
       }
     }
 
-    /* Accessibility: focus-visible outlines */
+   
     .login-box input:focus-visible, .login-btn:focus-visible, a:focus-visible {
       outline: 3px solid rgba(123,160,255,0.25);
       outline-offset: 3px;
@@ -315,7 +324,7 @@
 <body>
   <div class="main-card">
 
-    <!-- LEFT SECTION -->
+    
     <div class="left-info">
       <div class="logo-bg" aria-hidden="true"></div>
 
@@ -334,10 +343,10 @@
       </div>
     </div>
 
-    <!-- RIGHT: LOGIN BOX -->
+  
     <div class="login-box" role="region" aria-label="Login form">
       <div class="login-top">
-        <!-- ✅ ALERT ADDED HERE -->
+ 
         <form action="home.html" method="get" novalidate onsubmit="alert('Login successful!');">
           <label for="user" class="sr-only" style="position:absolute;left:-9999px">Phone number, username, or email</label>
           <input id="user" name="user" type="text" placeholder="Phone number, username, or email" required />
