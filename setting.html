@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connectify - Account Settings</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(to bottom right, #dce9ff, #b7d3ff);
@@ -22,7 +26,8 @@
         }
 
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 900px;
             margin: 30px auto;
             background: white;
             padding: 25px;
@@ -34,6 +39,7 @@
             color: #003d80;
             border-left: 5px solid #0056b3;
             padding-left: 10px;
+            margin-top: 0;
         }
 
         .setting-box {
@@ -47,15 +53,23 @@
         label {
             font-weight: bold;
             color: #003d80;
+            display: block;
+            margin-top: 10px;
         }
 
-        input, textarea, select {
+        input,
+        textarea,
+        select {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
             border-radius: 6px;
             border: 1px solid #87aafc;
-            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
         }
 
         button {
@@ -63,10 +77,13 @@
             color: white;
             padding: 10px 20px;
             border: none;
-            margin-top: 10px;
+            margin-top: 15px;
             border-radius: 6px;
             cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s ease;
         }
+
         button:hover {
             background: #003d80;
         }
@@ -77,6 +94,67 @@
             margin-top: 40px;
             background: #0056b3;
             color: white;
+            font-size: 13px;
+        }
+
+        @media  screen and (max-width: 992px) {
+            header {
+                font-size: 24px;
+                padding: 16px;
+            }
+
+            .container {
+                width: 95%;
+                margin: 20px auto;
+                padding: 20px;
+            }
+
+            .setting-box {
+                padding: 15px;
+            }
+        }
+
+     
+        @media (max-width: 600px) {
+            header {
+                font-size: 20px;
+                padding: 14px;
+            }
+
+            .container {
+                width: 95%;
+                margin: 15px auto;
+                padding: 15px;
+            }
+
+            .setting-box {
+                margin-bottom: 20px;
+                padding: 12px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            label,
+            input,
+            textarea,
+            select {
+                font-size: 14px;
+            }
+
+            button {
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            footer {
+                font-size: 12px;
+                padding: 10px;
+                margin-top: 20px;
+            }
         }
     </style>
 </head>
@@ -85,7 +163,6 @@
 <header>Connectify - Account Settings</header>
 
 <div class="container">
-
 
     <div class="setting-box">
         <h2>Update Profile Info</h2>
@@ -119,7 +196,6 @@
         </form>
     </div>
 
-  
     <div class="setting-box">
         <h2>Privacy Settings</h2>
         <form>
@@ -142,7 +218,8 @@
 
 </div>
 
-<footer><p class="muted" style="margin-top:20px; font-size:13px; color: #345dff;">© 2025 CONNECT SOCIAL | Made by Siddhi Varshney 👍</p>
+<footer>
+    <p class="muted" style="margin-top:5px;">© 2025 CONNECT SOCIAL | Made by Siddhi Varshney 👍</p>
 </footer>
 
 </body>
